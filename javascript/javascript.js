@@ -5,6 +5,10 @@ function Book(title, author, pages, read = false) {
     this.read = read
 }
 
+const library = document.querySelector(`.library`)
+const addBookForm = document.querySelector(`#add-book`)
+addBookForm.addEventListener(`submit`, addNewBook)
+
 let allBooks = []
 allBooks.push(new Book(`Gornol and Fron`, `Mick Harris`, 201))
 allBooks.push(new Book(`Pardon my french!`, `Philippe Eustache`, 122))
@@ -15,11 +19,6 @@ allBooks.push(new Book(`ABC for barbarians`, `Grok the Wise`, 38))
 allBooks.push(new Book(`The science of singing`, `Charleene Beak`, 251))
 allBooks.push(new Book(`I hate my husband`, `Nina Beater`, 493))
 allBooks.push(new Book(`I hate my wife`, `Victor Beaker`, 78))
-
-const library = document.querySelector(`.library`)
-const addFormButton = document.querySelector(`#add-form`)
-const addBookForm = document.querySelector(`#add-book`)
-addBookForm.addEventListener(`submit`, addNewBook)
 
 allBooks.forEach(displayBook)
 
@@ -44,18 +43,24 @@ function displayBook(book, index) {
     const bookCard = document.createElement(`div`)
     bookCard.dataset.index = index
     bookCard.classList.add(`card`, `text-bg-info`, `p-0`, `col-xs-8`, `col-sm-5`, `col-xl-3`)
+
     const bookCardBody = document.createElement(`div`)
     bookCardBody.classList.add(`card-body`, `d-flex`, `flex-column`, `justify-content-end`, `gap-2`)
+
     const title = document.createElement(`h5`)
     title.innerHTML = book.title
     title.classList.add(`card-header`)
+
     const author = document.createElement(`small`)
     author.innerHTML = `by ${book.author}`
     author.classList.add(`text-muted`)
+
     const pages = document.createElement(`div`)
     pages.innerHTML = `Pages: ${book.pages}`
+
     const buttonsContainer = document.createElement(`div`)
     buttonsContainer.classList.add(`d-flex`, `flex-row`, `justify-content-evenly`)
+
     const readStatus = document.createElement(`button`)
     readStatus.classList.add(`btn`, `btn-primary`)
     readStatus.dataset.index = index
@@ -65,6 +70,7 @@ function displayBook(book, index) {
         readStatus.innerHTML = `Unread`
     }
     readStatus.addEventListener(`click`, changeReadStatus)
+
     const removeBook = document.createElement(`button`)
     removeBook.classList.add(`btn`, `btn-primary`)
     removeBook.dataset.index = index
