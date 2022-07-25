@@ -52,10 +52,12 @@ function displayBook(book, index) {
     if (book.read) {
         readStatus.innerHTML = `Read`
     } else {
-        readStatus.innerHTML = `Not read`
+        readStatus.innerHTML = `Unread`
     }
+    readStatus.addEventListener(`click`, changeReadStatus)
     const removeBook = document.createElement(`button`)
     removeBook.classList.add(`btn`, `btn-primary`)
+    removeBook.dataset.index = index
     removeBook.innerHTML = `Delete`
     removeBook.addEventListener(`click`, deleteBook)
 
@@ -71,8 +73,19 @@ function displayBook(book, index) {
 }
 
 function deleteBook() {
-    let index = this.parentElement.parentElement.parentElement.dataset.index
+    let index = this.dataset.index
     allBooks[index] = null
     let book = document.querySelector(`.card[data-index="${index}"]`)
     book.remove()
+}
+
+function changeReadStatus() {
+    let book = allBooks[this.dataset.index]
+    if (book.read == false) {
+        this.innerHTML = `Read`
+        book.read = true
+    } else {
+        this.innerHTML = `Unread`
+        book.read = false
+    }
 }
