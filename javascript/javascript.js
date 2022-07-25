@@ -5,16 +5,6 @@ function Book(title, author, pages, read = false) {
     this.read = read
 }
 
-Book.prototype.info = function() {
-    let string = `${this.title} was written by ${this.author} and it contains ${this.pages} pages.`
-    if (this.read == false) {
-        string += ` You have not read this book.`
-    } else {
-        string += ` You have read this book.`
-    }
-    return string
-}
-
 let allBooks = []
 allBooks.push(new Book(`Gornol and Fron`, `Mick Harris`, 201))
 allBooks.push(new Book(`Pardon my french!`, `Philippe Eustache`, 122))
@@ -28,11 +18,17 @@ allBooks.push(new Book(`I hate my wife`, `Victor Beaker`, 78))
 
 const library = document.querySelector(`.library`)
 const addFormButton = document.querySelector(`#add-form`)
+// addFormButton.addEventListener(`click`, toggleModal)
 const addBookForm = document.querySelector(`#add-book`)
-
 addBookForm.addEventListener(`submit`, addNewBook)
 
+
+
 allBooks.forEach(displayBook)
+
+// function toggleModal() {
+//     addBookForm.classList.remove(`hidden`)
+// }
 
 function addNewBook(event) {
     event.preventDefault()
