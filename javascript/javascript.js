@@ -26,8 +26,28 @@ allBooks.push(new Book(`The science of singing`, `Charleene Beak`, 251))
 allBooks.push(new Book(`I hate my husband`, `Nina Beater`, 493))
 allBooks.push(new Book(`I hate my wife`, `Victor Beaker`, 78))
 
+const library = document.querySelector(`.library`)
+
 allBooks.forEach(displayBook)
 
 function displayBook(book, index) {
-    
+    const bookCard = document.createElement(`div`)
+    bookCard.dataset.index = index
+    const title = document.createElement(`div`)
+    title.innerHTML = book.title
+    const author = document.createElement(`div`)
+    author.innerHTML = `by ${book.author}`
+    const pages = document.createElement(`div`)
+    pages.innerHTML = `Pages: ${book.pages}`
+    const readStatus = document.createElement(`div`)
+    if (book.read) {
+        readStatus.innerHTML = `Read`
+    } else {
+        readStatus.innerHTML = `Not read`
+    }
+    library.appendChild(bookCard)
+    bookCard.appendChild(title)
+    bookCard.appendChild(author)
+    bookCard.appendChild(pages)
+    bookCard.appendChild(readStatus)
 }
