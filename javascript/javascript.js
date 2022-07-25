@@ -33,21 +33,38 @@ allBooks.forEach(displayBook)
 function displayBook(book, index) {
     const bookCard = document.createElement(`div`)
     bookCard.dataset.index = index
-    const title = document.createElement(`div`)
+    bookCard.classList.add(`card`, `text-bg-info`, `p-0`)
+    const bookCardBody = document.createElement(`div`)
+    bookCardBody.classList.add(`card-body`)
+    const title = document.createElement(`h5`)
     title.innerHTML = book.title
-    const author = document.createElement(`div`)
+    title.classList.add(`card-header`)
+    const author = document.createElement(`small`)
     author.innerHTML = `by ${book.author}`
+    author.classList.add(`text-muted`)
     const pages = document.createElement(`div`)
     pages.innerHTML = `Pages: ${book.pages}`
-    const readStatus = document.createElement(`div`)
+    const buttonsContainer = document.createElement(`div`)
+    buttonsContainer.classList.add(`d-flex`, `flex-row`, `justify-content-evenly`)
+    const readStatus = document.createElement(`button`)
+    readStatus.classList.add(`btn`, `btn-primary`)
+    readStatus.dataset.index = index
     if (book.read) {
         readStatus.innerHTML = `Read`
     } else {
         readStatus.innerHTML = `Not read`
     }
+    const removeBook = document.createElement(`button`)
+    removeBook.classList.add(`btn`, `btn-primary`)
+    removeBook.innerHTML = `Delete`
+
     library.appendChild(bookCard)
     bookCard.appendChild(title)
-    bookCard.appendChild(author)
-    bookCard.appendChild(pages)
-    bookCard.appendChild(readStatus)
+    title.appendChild(document.createElement(`br`))
+    title.appendChild(author)
+    bookCard.appendChild(bookCardBody)
+    bookCardBody.appendChild(pages)
+    bookCardBody.appendChild(buttonsContainer)
+    buttonsContainer.appendChild(readStatus)
+    buttonsContainer.appendChild(removeBook)
 }
