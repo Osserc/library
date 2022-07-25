@@ -14,11 +14,25 @@
     <div class="container-fluid bg-secondary p-0">
         <header class="text-bg-primary p-3 d-flex justify-content-between">
             <h1>Osserc's arcane library</h1>
-            <button class="btn btn-info add-book">Add book</button>
+            <button class="btn btn-info" id="add-form">Add book</button>
         </header>
     </div>
 
     <div class="container-fluid text-center library row row-cols-3 m-0 p-1 justify-content-evenly align-items-center">
+    </div>
+
+    <div>
+        <form id="add-book">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author">
+            <label for="pages">Pages:</label>
+            <input type="number" id="pages" name="pages">
+            <label for="readStatus">Read:</label>
+            <input type="checkbox" id="readStatus" name="readStatus">
+            <button type="submit">Add book</button>
+        </form>
     </div>
 </body>
 </html>

@@ -27,8 +27,29 @@ allBooks.push(new Book(`I hate my husband`, `Nina Beater`, 493))
 allBooks.push(new Book(`I hate my wife`, `Victor Beaker`, 78))
 
 const library = document.querySelector(`.library`)
+const addFormButton = document.querySelector(`#add-form`)
+const addBookForm = document.querySelector(`#add-book`)
+
+addBookForm.addEventListener(`submit`, addNewBook)
 
 allBooks.forEach(displayBook)
+
+function addNewBook(event) {
+    event.preventDefault()
+    let values = collectValues(event.target.elements)
+    let newBook = new Book(...values)
+    allBooks.push(newBook)
+    displayBook(newBook, allBooks.length)
+}
+
+function collectValues(formSubmission) {
+    let values = []
+    values.push(formSubmission.title.value)
+    values.push(formSubmission.author.value)
+    values.push(formSubmission.pages.value)
+    values.push(formSubmission.readStatus.checked ? `true` : `false`)
+    return values
+}
 
 function displayBook(book, index) {
     const bookCard = document.createElement(`div`)
