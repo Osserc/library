@@ -18,24 +18,17 @@ allBooks.push(new Book(`I hate my wife`, `Victor Beaker`, 78))
 
 const library = document.querySelector(`.library`)
 const addFormButton = document.querySelector(`#add-form`)
-// addFormButton.addEventListener(`click`, toggleModal)
 const addBookForm = document.querySelector(`#add-book`)
 addBookForm.addEventListener(`submit`, addNewBook)
 
-
-
 allBooks.forEach(displayBook)
-
-// function toggleModal() {
-//     addBookForm.classList.remove(`hidden`)
-// }
 
 function addNewBook(event) {
     event.preventDefault()
     let values = collectValues(event.target.elements)
     let newBook = new Book(...values)
     allBooks.push(newBook)
-    displayBook(newBook, allBooks.length)
+    displayBook(newBook, allBooks.length - 1)
 }
 
 function collectValues(formSubmission) {
@@ -50,9 +43,9 @@ function collectValues(formSubmission) {
 function displayBook(book, index) {
     const bookCard = document.createElement(`div`)
     bookCard.dataset.index = index
-    bookCard.classList.add(`card`, `text-bg-info`, `p-0`)
+    bookCard.classList.add(`card`, `text-bg-info`, `p-0`, `col-xs-8`, `col-sm-5`, `col-xl-3`)
     const bookCardBody = document.createElement(`div`)
-    bookCardBody.classList.add(`card-body`)
+    bookCardBody.classList.add(`card-body`, `d-flex`, `flex-column`, `justify-content-end`, `gap-2`)
     const title = document.createElement(`h5`)
     title.innerHTML = book.title
     title.classList.add(`card-header`)
