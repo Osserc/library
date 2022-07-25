@@ -57,6 +57,7 @@ function displayBook(book, index) {
     const removeBook = document.createElement(`button`)
     removeBook.classList.add(`btn`, `btn-primary`)
     removeBook.innerHTML = `Delete`
+    removeBook.addEventListener(`click`, deleteBook)
 
     library.appendChild(bookCard)
     bookCard.appendChild(title)
@@ -67,4 +68,11 @@ function displayBook(book, index) {
     bookCardBody.appendChild(buttonsContainer)
     buttonsContainer.appendChild(readStatus)
     buttonsContainer.appendChild(removeBook)
+}
+
+function deleteBook() {
+    let index = this.parentElement.parentElement.parentElement.dataset.index
+    allBooks[index] = null
+    let book = document.querySelector(`.card[data-index="${index}"]`)
+    book.remove()
 }
